@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.log
+.qa/
+.openai/
+# Private story projects: keep examples tracked; put your own work in projects/.
+projects/

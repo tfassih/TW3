@@ -1,0 +1,14 @@
+{
+  "name": "the-webs-we-weave",
+  "version": "1.0.0",
+  "description": "TW3: an offline character and branching-story evidence board",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "node scripts/serve.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build.cjs",
+    "check": "node --check src/core.js && node --check src/exports.js && node --check src/app.js && node --test tests/*.test.cjs"
+  },
+  "engines": { "node": ">=20" }
+}

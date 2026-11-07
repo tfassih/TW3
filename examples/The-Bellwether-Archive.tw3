@@ -1,0 +1,235 @@
+{
+  "format": "tw3",
+  "version": 1,
+  "id": "story-bellwether",
+  "title": "The Bellwether Archive",
+  "medium": "game",
+  "unit": "beat",
+  "description": "A missing archivist. A city that edits its own history. Three lives caught between the truth and the stories that keep them safe.",
+  "updatedAt": "2026-11-07T10:51:33.024Z",
+  "events": [
+    {
+      "id": "e-start",
+      "title": "A letter after midnight",
+      "description": "An unsigned letter summons Mara to the shuttered municipal archive. Someone has erased an entire district from the maps.",
+      "role": "beginning",
+      "behavior": "static",
+      "begin": 0,
+      "end": 2,
+      "x": 120,
+      "y": 390
+    },
+    {
+      "id": "e-choice",
+      "title": "The price of the truth",
+      "description": "Ivo offers the original ledger. The player must decide whether to expose it or protect the people named inside.",
+      "role": "event",
+      "behavior": "static",
+      "begin": 5,
+      "end": 7,
+      "x": 465,
+      "y": 390
+    },
+    {
+      "id": "e-reveal",
+      "title": "Open the archive",
+      "description": "The ledger is broadcast across the city. Ivo becomes a witness, and the erased district returns to public memory.",
+      "role": "ending",
+      "behavior": "dynamic",
+      "begin": 12,
+      "end": 15,
+      "x": 840,
+      "y": 290
+    },
+    {
+      "id": "e-protect",
+      "title": "Burn the ledger",
+      "description": "The names remain a secret. The keeper helps Mara disappear, but the official history survives.",
+      "role": "ending",
+      "behavior": "dynamic",
+      "begin": 12,
+      "end": 15,
+      "x": 840,
+      "y": 580
+    }
+  ],
+  "characters": [
+    {
+      "id": "c-mara",
+      "named": true,
+      "name": "Mara Voss",
+      "archetype": "The investigator",
+      "importance": "major",
+      "justification": "Mara gives the player a personal reason to recover the erased district: her family once lived there.",
+      "narrative": "A former cartographer following the empty spaces in the city’s official history.",
+      "personality": "Patient with strangers. Merciless with a contradiction.",
+      "staticTraits": [
+        "Former municipal cartographer",
+        "Her family lived in the erased district",
+        "Keeps a hand-drawn map"
+      ],
+      "dynamicTraits": [
+        {
+          "id": "t-mara",
+          "key": "Reputation",
+          "value": "Public whistleblower",
+          "eventId": "e-reveal",
+          "choiceId": "l-reveal",
+          "effect": "trait",
+          "importance": "high"
+        },
+        {
+          "id": "t-mara2",
+          "key": "Reputation",
+          "value": "An unrecorded life",
+          "eventId": "e-protect",
+          "choiceId": "l-protect",
+          "effect": "trait",
+          "importance": "high"
+        }
+      ],
+      "entrance": {
+        "eventId": "e-start",
+        "why": "Her past is hidden in the missing records.",
+        "how": "Arrives with the unsigned letter and an old city map."
+      },
+      "exit": null,
+      "portrait": "",
+      "x": 110,
+      "y": 80
+    },
+    {
+      "id": "c-ivo",
+      "named": true,
+      "name": "Ivo Senn",
+      "archetype": "The reluctant witness",
+      "importance": "major",
+      "justification": "Ivo turns an abstract conspiracy into a choice with a human cost.",
+      "narrative": "The last archivist who remembers what the city chose to forget.",
+      "personality": "Precise, guarded, and quietly afraid.",
+      "staticTraits": [
+        "Worked in the archive for twenty years",
+        "Knows who ordered the erasure"
+      ],
+      "dynamicTraits": [
+        {
+          "id": "t-ivo",
+          "key": "Allegiance",
+          "value": "Testifies alongside Mara",
+          "eventId": "e-reveal",
+          "choiceId": "l-reveal",
+          "effect": "trait",
+          "importance": "high"
+        },
+        {
+          "id": "t-ivo2",
+          "key": "Fate",
+          "value": "Leaves the city for good",
+          "eventId": "e-protect",
+          "choiceId": "l-protect",
+          "effect": "exit",
+          "importance": "high"
+        }
+      ],
+      "entrance": {
+        "eventId": "e-choice",
+        "why": "He holds the only surviving copy of the ledger.",
+        "how": "Steps from the stacks and offers a bargain."
+      },
+      "exit": null,
+      "portrait": "",
+      "x": 445,
+      "y": 65
+    },
+    {
+      "id": "c-keeper",
+      "named": false,
+      "name": "",
+      "archetype": "The night keeper",
+      "importance": "minor",
+      "justification": "Provides access to the archive and a possible escape route without distracting from the central conflict.",
+      "narrative": "An anonymous caretaker who knows every locked door in the archive.",
+      "personality": "Pragmatic. Notices more than they say.",
+      "staticTraits": [
+        "Has the archive keys",
+        "Works only after dark"
+      ],
+      "dynamicTraits": [],
+      "entrance": {
+        "eventId": "e-start",
+        "why": "Someone must admit Mara to the building.",
+        "how": "Unlocks a side door without asking her name."
+      },
+      "exit": null,
+      "portrait": "",
+      "x": 1110,
+      "y": 70
+    }
+  ],
+  "connections": [
+    {
+      "id": "l-open",
+      "from": "e-start",
+      "to": "e-choice",
+      "kind": "static",
+      "label": "Follow the missing records"
+    },
+    {
+      "id": "l-reveal",
+      "from": "e-choice",
+      "to": "e-reveal",
+      "kind": "dynamic",
+      "label": "Expose the ledger"
+    },
+    {
+      "id": "l-protect",
+      "from": "e-choice",
+      "to": "e-protect",
+      "kind": "dynamic",
+      "label": "Protect the names"
+    },
+    {
+      "id": "l-mara",
+      "from": "c-mara",
+      "to": "e-start",
+      "kind": "static",
+      "label": "Receives the letter"
+    },
+    {
+      "id": "l-mara2",
+      "from": "c-mara",
+      "to": "e-choice",
+      "kind": "static",
+      "label": "Makes the choice"
+    },
+    {
+      "id": "l-ivo",
+      "from": "c-ivo",
+      "to": "e-choice",
+      "kind": "static",
+      "label": "Offers the ledger"
+    },
+    {
+      "id": "l-keeper",
+      "from": "c-keeper",
+      "to": "e-start",
+      "kind": "static",
+      "label": "Opens the door"
+    },
+    {
+      "id": "l-bond",
+      "from": "c-mara",
+      "to": "c-ivo",
+      "kind": "static",
+      "label": "An uneasy alliance"
+    },
+    {
+      "id": "l-escape",
+      "from": "c-keeper",
+      "to": "e-protect",
+      "kind": "dynamic",
+      "label": "Helps Mara disappear",
+      "choiceId": "l-protect"
+    }
+  ]
+}

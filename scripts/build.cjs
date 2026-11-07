@@ -1,0 +1,11 @@
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const dest=path.join(root,'dist');fs.mkdirSync(dest,{recursive:true});
+let html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+html=html.replace('<link rel="stylesheet" href="styles.css">',()=>'<style>'+fs.readFileSync(path.join(root,'styles.css'),'utf8')+'</style>');
+for(const file of ['core','exports','app']) html=html.replace(`<script src="src/${file}.js"></script>`,()=>'<script>'+fs.readFileSync(path.join(root,'src',file+'.js'),'utf8').replace(/<\/script/gi,'<\\/script')+'</script>');
+fs.writeFileSync(path.join(dest,'index.html'),html);fs.writeFileSync(path.join(dest,'TW3.html'),html);
+fs.writeFileSync(path.join(root,'TW3.html'),html);
+fs.writeFileSync(path.join(dest,'.nojekyll'),'');
+const C=require('../src/core.js');fs.writeFileSync(path.join(root,'examples','The-Bellwether-Archive.tw3'),JSON.stringify(C.sample(),null,2));
+console.log('Built standalone TW3.html and deployable dist/index.html. No external assets required.');

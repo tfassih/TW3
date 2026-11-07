@@ -1,0 +1,25 @@
+THE WEBS WE WEAVE — TW3 ("twee")
+Version 1.0.0
+
+1. Extract the entire ZIP. Do not run the app from inside the ZIP viewer.
+2. Open TW3.html in Edge or Chrome. No installation or internet is needed.
+3. Click New to choose Video game, Novel, Film, or Television.
+4. Create your events and characters. Use Connect to draw relationships.
+5. Save a .tw3 file to keep your project. Save regularly, especially after
+   importing portraits. Browser draft recovery is not a backup.
+
+The included example demonstrates branching choices, changing traits, and
+alternate endings. The ? button in the app opens the complete usage guide.
+
+If your browser restricts local files, run:
+  py serve.py       (Windows with Python installed)
+  python3 serve.py  (macOS / Linux with Python installed)
+
+This starts an offline local server and opens the app automatically.
+
+README.md contains the complete guide and GitHub deployment instructions.
+Full source, tests, a GitHub Pages workflow, and prebuilt dist/ are included.
+
+The test environment verified the app over local HTTP; it blocks file://
+URLs, so direct double-click launch and native OS save pickers remain
+unverified there. See docs/VERIFICATION.md for the full test record.
